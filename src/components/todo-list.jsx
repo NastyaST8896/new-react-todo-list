@@ -4,40 +4,38 @@ import InputCustom from './input-new-todo';
 import ListItems from './list-items';
 
 function TodoList() {
-    const [todo, setTodo] = useState([
-        {id: 1, text:'gjlfhrb', checked: false},
-        {id: 2, text:'klrf', checked: false},
-        {id: 3, text:'cfkfn gjl ie,jq', checked: false},
-    ]);
+  const [todos, setTodo] = useState([
+    { id: 1, text: 'gjlfhrb', checked: false },
+    { id: 2, text: 'klrf', checked: false },
+    { id: 3, text: 'cfkfn gjl ie,jq', checked: false },
+  ]);
 
-    const handleAddListItem = (inputValue) => {
-        let text = inputValue;
-        let newTodos = todo.slice();
-        let newTodo = {id:Date.now(), text: text, checked: false}
-        newTodos.push(newTodo)
-        setTodo(newTodos);
-    }
-    
-    return (
-        <Grid container spacing={0} >
-            <Grid size={{xs:1, md:2, lg:3, xl:4}}></Grid>
+  const handleAddListItem = (inputValue) => {
+    const text = inputValue;
+    const newTodo = { id: Date.now(), text: text, checked: false }
+    setTodo([...todos, newTodo]);
+  }
 
-            <Grid size={{xs:10, md:8, lg:6, xl:4}}>
-                <header>
-                    <h1>todos</h1>
-                </header>
+  return (
+    <Grid container spacing={0} >
+      <Grid size={{ xs: 1, md: 2, lg: 3, xl: 4 }}></Grid>
 
-                <main>
-                    <InputCustom handleAddListItem={ handleAddListItem }/>
+      <Grid size={{ xs: 10, md: 8, lg: 6, xl: 4 }}>
+        <header>
+          <h1>todos</h1>
+        </header>
 
-                    <ListItems todos={todo} />
-                </main>
-                   
-            </Grid>
+        <main>
+          <InputCustom handleAddListItem={handleAddListItem} />
 
-            <Grid size={{xs:1, md:2, lg:3, xl:4}}></Grid>
-        </Grid>
-    )
+          <ListItems todos={todos} />
+        </main>
+
+      </Grid>
+
+      <Grid size={{ xs: 1, md: 2, lg: 3, xl: 4 }}></Grid>
+    </Grid>
+  )
 }
 
 export default TodoList
