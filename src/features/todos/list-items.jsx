@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { removeTodo } from './todosSlice';
+import { removeTodo, changeTodo } from './todosSlice';
 
 function ListItems() {
   const todos = useSelector((state) => state.todosArray.todos);
@@ -40,7 +40,7 @@ function ListItems() {
               color="success"
               checked={todo.checked}
               sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
-              // onChange={() => handleChange(todo)}
+              onChange={() =>{dispatch(changeTodo(todo.id))}}
             />
           </ListItemIcon>
           <ListItemText primary={todo.text} />
