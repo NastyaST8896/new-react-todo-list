@@ -1,8 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import { TextField } from '@mui/material';
+import { useDispatch } from "react-redux";
+import { addTodo } from "./todosSlice";
 
-function InputCustom({ handleAddListItem }) {
+function InputCustom() {
   const [inputValue, setInputValue] = useState('');
+  const dispatch = useDispatch();
 
 
   const inputRef = useRef(null);
@@ -18,7 +21,7 @@ function InputCustom({ handleAddListItem }) {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       if (inputValue.trim() !== '') {
-        handleAddListItem(inputValue.trim());
+        dispatch(addTodo(inputValue))
         setInputValue('');
       }
 

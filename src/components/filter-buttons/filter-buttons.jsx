@@ -1,6 +1,5 @@
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Grid from '@mui/material/Grid';
 
 import './filter-buttons.css'
 

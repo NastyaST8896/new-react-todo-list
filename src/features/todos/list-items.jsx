@@ -6,15 +6,21 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function ListItems({ todos, handleCheck, handleDeleteListItem }) {
-  const handleChange = (todo) => {
-    todo.checked = !todo.checked
-    handleCheck(todo.id, todo.checked)
-  }
+import { useSelector, useDispatch } from 'react-redux'
+import { removeTodo } from './todosSlice';
+
+function ListItems() {
+  const todos = useSelector((state) => state.todosArray.todos);
+  const dispatch = useDispatch();
+
+  // const handleChange = (todo) => {
+  //   todo.checked = !todo.checked
+  //   handleCheck(todo.id, todo.checked)
+  // }
 
   return (
     <List>
-      {todos.map((todo, index) => (
+      {todos.map((todo) => (
         <ListItem
           divider={true}
           key={todo.id}
@@ -22,7 +28,7 @@ function ListItems({ todos, handleCheck, handleDeleteListItem }) {
             <IconButton 
             edge="end" 
             aria-label="delete"
-            onClick={() => { handleDeleteListItem(todo.id)}}
+            onClick={() => { dispatch(removeTodo(todo.id))}}
             >
               <DeleteIcon />
             </IconButton>
@@ -34,7 +40,7 @@ function ListItems({ todos, handleCheck, handleDeleteListItem }) {
               color="success"
               checked={todo.checked}
               sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
-              onChange={() => handleChange(todo)}
+              // onChange={() => handleChange(todo)}
             />
           </ListItemIcon>
           <ListItemText primary={todo.text} />
