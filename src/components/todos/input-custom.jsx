@@ -24,8 +24,13 @@ function InputCustom() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && inputValue.trim() !== "") {
-      editTodo ? dispatch(changeTodoText(inputValue)) : dispatch(addTodo(inputValue));
-      setInputValue("");
+      if (editTodo) {
+        dispatch(changeTodoText(inputValue))
+        setInputValue("");
+      } else {
+      dispatch(addTodo(inputValue));
+        setInputValue("");
+      }
     }
 
     if (event.key === "Escape") {

@@ -59,7 +59,6 @@ export const {
   changeTodoChecked,
   findCurrentTodo,
   changeTodoText,
-  clearEditTodo
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

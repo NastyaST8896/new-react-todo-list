@@ -1,4 +1,4 @@
-import './item-counters.css'
+import style from './item-counters.module.css'
 
 import { useSelector } from 'react-redux';
 
@@ -8,9 +8,11 @@ function ItemCounters() {
   let checkedItemsLength = todos.filter((todo) => {
     return todo.checked === true;
   }).length
+
+  let leftItemsLength = todos.length - checkedItemsLength
   return (
-    <div className="item-counters">
-      <span>{todos.length - checkedItemsLength} {(todos.length - checkedItemsLength) === 1 ? "item" : "items"} left</span>
+    <div className={style['item-counters']} >
+      <span>{leftItemsLength} {leftItemsLength === 1 ? "item" : "items"} left</span>
       <span>{checkedItemsLength} {checkedItemsLength === 1 ? "item" : "items"} checked</span>
     </div>
   )

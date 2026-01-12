@@ -1,11 +1,15 @@
 import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
 
 import InputCustom from './input-custom';
 import ListItems from './list-items/list-items';
 import ItemCounters from './item-counters/item-counters';
 import FilterButtons from '../filters/filter-buttons';
+import {useSelector} from "react-redux";
+import {selectTodosByFilter} from "../../app/selector";
 
 function TodoList() {
+  const todos = useSelector(selectTodosByFilter);
 
   return (
     <Grid container spacing={0}>
@@ -24,8 +28,9 @@ function TodoList() {
         <main>
           <InputCustom />
 
-          <ListItems />
-
+          <List>
+            {todos.map((todo) => <ListItems key={todo.id} todo={todo} /> )}
+          </List>
           <Grid
             container
             spacing={2}
