@@ -4,9 +4,7 @@ const initialState = {
   todos: [
     {id: 123, text: 'Hello', checked: false},
     {id: 124, text: 'Bye', checked: true},
-  ],
-
-  editTodo: null
+  ]
 }
 
 export const todosSlice = createSlice({
@@ -35,20 +33,27 @@ export const todosSlice = createSlice({
       });
     },
 
-    findCurrentTodo: (state, action) => {
-      state.editTodo = action.payload;
-    },
-
     changeTodoText: (state, action) => {
       state.todos = state.todos.map((todo) => {
-        if (state.editTodo.id === todo.id) {
-          todo.text = action.payload;
+        if (+action.payload.id === todo.id) {
+          todo.text = action.payload.text;
         }
 
         return todo;
       });
+    },
 
-      state.editTodo = null;
+    checkAllTodo: (state) => {
+      state.todos = state.todos.map((todo) => {
+        if(!todo.checked) {
+          todo.checked = !todo.checked
+        }
+        return todo
+      })
+    },
+
+    clearAllTodo: (state) => {
+      state.todos.splice(0, state.todos.length);
     }
   },
 })
@@ -59,6 +64,8 @@ export const {
   changeTodoChecked,
   findCurrentTodo,
   changeTodoText,
+  checkAllTodo,
+  clearAllTodo,
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

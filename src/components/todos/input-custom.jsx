@@ -1,22 +1,20 @@
-import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import {useRef, useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {addTodo, changeTodoText, findCurrentTodo} from '../../app/todosSlice';
+import {useDispatch} from 'react-redux';
+import {addTodo, checkAllTodo} from '../../app/todosSlice';
 
 function InputCustom() {
   const [inputValue, setInputValue] = useState("");
-  const editTodo = useSelector(state => state.todosArray.editTodo);
   const dispatch = useDispatch();
   const inputRef = useRef(null);
 
   useEffect(() => {
     inputRef.current?.focus();
-
-    if (editTodo) {
-      setInputValue(editTodo.text);
-    }
-  }, [editTodo]);
+  }, []);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -24,39 +22,33 @@ function InputCustom() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && inputValue.trim() !== "") {
-      if (editTodo) {
-        dispatch(changeTodoText(inputValue))
-        setInputValue("");
-      } else {
       dispatch(addTodo(inputValue));
         setInputValue("");
-      }
-    }
-
-    if (event.key === "Escape") {
-      dispatch(findCurrentTodo(null));
-      setInputValue("");
     }
   }
 
-  const handleCancelEdit = (event) => {
-    dispatch(findCurrentTodo(null));
-    setInputValue("");
+  const handleClickArrowButton = (event) => {
+    dispatch(checkAllTodo());
   }
 
   return (
-    <TextField
-      autoComplete="off"
-      id="outlined-basic"
-      placeholder="add a new todo"
-      variant="outlined"
-      fullWidth
-      value={inputValue}
-      onChange={handleInputChange}
-      onKeyDown={handleKeyDown}
-      onBlur={handleCancelEdit}
-      inputRef={inputRef}
-    />
+    <Paper>
+      <IconButton onClick={handleClickArrowButton}>
+        <KeyboardArrowDownIcon />
+      </IconButton>
+
+      <InputBase
+        autoComplete="off"
+        id="outlined-basic"
+        placeholder="add a new todo"
+        variant="outlined"
+        value={inputValue}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        // onBlur={handleCancelEdit}
+        inputRef={inputRef}
+      />
+    </Paper>
   )
 }
 

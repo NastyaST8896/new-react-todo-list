@@ -7,6 +7,7 @@ import ItemCounters from './item-counters/item-counters';
 import FilterButtons from '../filters/filter-buttons';
 import {useSelector} from "react-redux";
 import {selectTodosByFilter} from "../../app/selector";
+import ClearButton from './clear-button';
 
 function TodoList() {
   const todos = useSelector(selectTodosByFilter);
@@ -46,6 +47,10 @@ function TodoList() {
 
             <Grid>
               <FilterButtons />
+            </Grid>
+
+            <Grid>
+              <ClearButton />
             </Grid>
           </Grid>
 
