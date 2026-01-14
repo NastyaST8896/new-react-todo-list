@@ -1,4 +1,5 @@
-import Button from '@mui/material/Button';
+import { ButtonCustom } from '../button-custom/button-custom';
+
 import { useDispatch } from 'react-redux';
 import { clearAllTodo } from '../../app/todosSlice';
 
@@ -9,7 +10,7 @@ function ClearButton () {
         dispatch(clearAllTodo());
     }
 
-    return <Button onClick={handleClick}  variant='outlined'>Clear all</Button>
+    return <ButtonCustom onClick={handleClick}  variant='outlined' text='CLEAR ALL' />
 }
 
 export default ClearButton;

@@ -1,0 +1,28 @@
+.input-custom {
+    width: 100%;
+    padding: 10px;
+    font-family: "Bentham", serif;
+    font-weight: 300;
+    font-size: 18px;
+    border: none;
+    border-radius: 2px;
+    outline-style: none;
+    outline: rgba(77, 214, 168, 0.1) solid 1px;
+    background-color: transparent;
+}
+
+.adding-input {
+      box-shadow: 2px 2px 4px rgba(77, 214, 168, 0.1),
+                  2px 2px 8px rgba(28, 82, 62, 0.3);
+}
+
+.edited-input {
+    display: none;
+    box-shadow: inset -2px -2px 8px rgba(77, 214, 168, 0.1),
+                inset -2px -2px 12px rgba(77, 214, 168, 0.1),
+                inset 2px 2px 4px rgba(77, 214, 168, 0.1),
+                inset 2px 2px 8px rgba(28, 82, 62, 0.3);
+    &-active{
+        display: block;
+    }
+}

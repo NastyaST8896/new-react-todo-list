@@ -9,11 +9,12 @@ import Checkbox from '@mui/material/Checkbox';
 import Input from '@mui/material/Input';
 
 import classNames from 'classnames';
-import styles from './list-items.module.css';
+import styles from './list-items.module.scss';
 
 import {useDispatch} from 'react-redux';
 import {removeTodo, changeTodoChecked, changeTodoText} from '../../../app/todosSlice';
 import {useRef, useState, useEffect} from 'react';
+import InputCustom from '../../input-custom/input-custom';
 
 function ListItems({todo}) {
   const [editTodoId, setEditTodoId] = useState('');
@@ -32,6 +33,7 @@ function ListItems({todo}) {
   }
 
   const handleDoubleClick = (event) => {
+    console.log(event.target.id);
     setEditTodoId(event.target.id);
     setInputValue(todo.text);
   }
@@ -54,27 +56,44 @@ function ListItems({todo}) {
     setInputValue('');
   }
 
-
+//  secondaryAction={
+//         <IconButton
+//           color="info"
+//           edge="end"
+//           aria-label="delete"
+//           onClick={() => {
+//             dispatch(removeTodo(todo.id))
+//           }}
+    //     >
+    //       <DeleteIcon />
+    //     </IconButton>
+    // }
 
   return (
-    <ListItem
-      divider={true}
-      key={todo.id}
+    <li
       className={listItemClasses}
-      secondaryAction={
-        <IconButton
-          color="info"
-          edge="end"
-          aria-label="delete"
-          onClick={() => {
-            dispatch(removeTodo(todo.id))
-          }}
-        >
-          <DeleteIcon />
-        </IconButton>
-      }
     >
-      <ListItemIcon>
+      <p className={styles['li-text']} onDoubleClick={handleDoubleClick} id={todo.id} >{todo.text}</p>
+      
+      <InputCustom 
+        variant='edited-input'
+        active={todo.id === +editTodoId ? 'true' : 'false'}
+        value={inputValue}
+        inputRef={inputRef}
+        onChange={handleEditInputChange}
+        onKeyDown={handleEditInputKeyDown}
+        onBlur={handleCancelEdit}
+      /> 
+     {/* <InputCustom 
+        variant='edited-input'
+        active={todo.id === +editTodoId ? true : false}
+        value={inputValue}
+        inputRef={inputRef}
+        onChange={handleEditInputChange}
+        onKeyDown={handleEditInputKeyDown}
+        onBlur={handleCancelEdit}
+      /> */}
+      {/* <ListItemIcon>
         <Checkbox
           edge="start"
           checked={todo.checked}
@@ -83,32 +102,8 @@ function ListItems({todo}) {
             dispatch(changeTodoChecked(todo.id))
           }}
         />
-      </ListItemIcon>
-      <ListItemText
-        primary={
-          <Typography
-            className={styles.typografy}
-            textOverflow="ellipsis"
-            overflow="hidden"
-            id={todo.id}
-          >
-            {todo.text}
-          </Typography>
-        }
-        onDoubleClick={handleDoubleClick}
-      />
-      
-      <Input 
-        className={styles['edited-input']} 
-        sx={{display: 'none'}} 
-        fullWidth={true}
-        value={inputValue}
-        inputRef={inputRef}
-        onChange={handleEditInputChange}
-        onKeyDown={handleEditInputKeyDown}
-        onBlur={handleCancelEdit}
-      />
-    </ListItem>
+      </ListItemIcon> */}
+    </li>
   )
 }
 

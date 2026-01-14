@@ -1,4 +1,4 @@
-import style from './item-counters.module.css'
+import style from './item-counters.module.scss'
 
 import { useSelector } from 'react-redux';
 

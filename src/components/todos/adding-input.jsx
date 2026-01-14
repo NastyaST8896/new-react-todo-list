@@ -1,13 +1,10 @@
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import InputCustom from '../input-custom/input-custom';
 
 import {useRef, useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {addTodo, checkAllTodo} from '../../app/todosSlice';
 
-function InputCustom() {
+function AddingInput() {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef(null);
@@ -27,29 +24,32 @@ function InputCustom() {
     }
   }
 
-  const handleClickArrowButton = (event) => {
-    dispatch(checkAllTodo());
-  }
+  // const handleClickArrowButton = (event) => {
+  //   dispatch(checkAllTodo());
+  // }
 
   return (
-    <Paper>
-      <IconButton onClick={handleClickArrowButton}>
-        <KeyboardArrowDownIcon />
-      </IconButton>
+    <>
+    <div>
+    </div>
 
-      <InputBase
-        autoComplete="off"
-        id="outlined-basic"
+    <InputCustom
+        type='text'
+        variant="adding-input"
         placeholder="add a new todo"
-        variant="outlined"
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        // onBlur={handleCancelEdit}
         inputRef={inputRef}
       />
-    </Paper>
+    </>
+    // <Paper>
+    //   <IconButton onClick={handleClickArrowButton}>
+    //     <KeyboardArrowDownIcon />
+    //   </IconButton>
+      
+    // </Paper>
   )
 }
 
-export default InputCustom
+export default AddingInput
