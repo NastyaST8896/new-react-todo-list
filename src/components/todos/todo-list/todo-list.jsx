@@ -1,6 +1,6 @@
 import List from '@mui/material/List';
 
-import AddingInput from '../adding-input';
+import AddingInput from '../adding-input/adding-input';
 import ListItems from '../list-items/list-items';
 import ItemCounters from '../../filters/item-counters/item-counters';
 import FilterButtons from '../../filters/filter-buttons';

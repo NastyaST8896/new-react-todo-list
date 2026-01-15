@@ -1,7 +1,7 @@
 import styles from './input-custom.module.scss'
 import classNames from 'classnames';
 
-function InputCustom ({type, variant, active, placeholder, value, onChange, onKeyDown, inputRef, onBlure}) {
+function InputCustom ({type, variant, active, placeholder, value, onChange, onKeyDown, inputRef, onBlur}) {
 
     const inputClasses = classNames(styles['input-custom'], 
         {[styles['adding-input']]: variant === 'adding-input'}, 
@@ -21,7 +21,7 @@ function InputCustom ({type, variant, active, placeholder, value, onChange, onKe
         onChange={onChange}
         onKeyDown={onKeyDown}
         ref={inputRef}
-        onBlure={onBlure}
+        onBlur={onBlur}
         ></input>
     )
 }

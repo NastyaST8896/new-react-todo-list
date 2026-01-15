@@ -1,13 +1,3 @@
-import ListItem from '@mui/material/ListItem';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Typography from '@mui/material/Typography';
-
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
-import Input from '@mui/material/Input';
-
 import classNames from 'classnames';
 import styles from './list-items.module.scss';
 
@@ -15,6 +5,8 @@ import {useDispatch} from 'react-redux';
 import {removeTodo, changeTodoChecked, changeTodoText} from '../../../app/todosSlice';
 import {useRef, useState, useEffect} from 'react';
 import InputCustom from '../../input-custom/input-custom';
+import CheckMark from '../../../img/check-mark.svg'
+import DeleteIcon from '../../../img/delete.svg'
 
 function ListItems({todo}) {
   const [editTodoId, setEditTodoId] = useState('');
@@ -33,9 +25,8 @@ function ListItems({todo}) {
   }
 
   const handleDoubleClick = (event) => {
-    console.log(event.target.id);
     setEditTodoId(event.target.id);
-    setInputValue(todo.text);
+    setInputValue(todo.text.trim());
   }
 
   const handleEditInputKeyDown = (event) => {
@@ -56,53 +47,59 @@ function ListItems({todo}) {
     setInputValue('');
   }
 
-//  secondaryAction={
-//         <IconButton
-//           color="info"
-//           edge="end"
-//           aria-label="delete"
-//           onClick={() => {
-//             dispatch(removeTodo(todo.id))
-//           }}
-    //     >
-    //       <DeleteIcon />
-    //     </IconButton>
-    // }
-
   return (
     <li
       className={listItemClasses}
     >
-      <p className={styles['li-text']} onDoubleClick={handleDoubleClick} id={todo.id} >{todo.text}</p>
-      
-      <InputCustom 
-        variant='edited-input'
-        active={todo.id === +editTodoId ? 'true' : 'false'}
-        value={inputValue}
-        inputRef={inputRef}
-        onChange={handleEditInputChange}
-        onKeyDown={handleEditInputKeyDown}
-        onBlur={handleCancelEdit}
-      /> 
-     {/* <InputCustom 
-        variant='edited-input'
-        active={todo.id === +editTodoId ? true : false}
-        value={inputValue}
-        inputRef={inputRef}
-        onChange={handleEditInputChange}
-        onKeyDown={handleEditInputKeyDown}
-        onBlur={handleCancelEdit}
-      /> */}
-      {/* <ListItemIcon>
-        <Checkbox
-          edge="start"
-          checked={todo.checked}
-          sx={{"& .MuiSvgIcon-root": {fontSize: 28}}}
-          onChange={() => {
-            dispatch(changeTodoChecked(todo.id))
-          }}
-        />
-      </ListItemIcon> */}
+      <div className={styles['li-components']}>
+        <div className={styles['li-components-info']}>
+          <div className={styles['checkbox-component']}>
+            <input 
+              type='checkbox' 
+              checked={todo.checked} 
+              className={styles['li-checkbox']}
+              onChange={() => {
+              dispatch(changeTodoChecked(todo.id))
+              }}
+            />
+
+            <div 
+            className={styles['checkbox-img']} 
+            onClick={() => { dispatch(changeTodoChecked(todo.id)) }}
+            >
+            {todo.checked? (
+            <img 
+            className={styles['img']} 
+            src={CheckMark} 
+            alt="checked" 
+            />
+            ) : ''}
+            </div>
+          </div>
+
+          <p 
+          className={styles['li-text']} 
+          onDoubleClick={handleDoubleClick} 
+          id={todo.id} 
+          >
+            {todo.text}
+          </p>
+
+          <InputCustom 
+          variant='edited-input'
+          active={todo.id === +editTodoId ? 'true' : 'false'}
+          value={inputValue}
+          inputRef={inputRef}
+          onChange={handleEditInputChange}
+          onKeyDown={handleEditInputKeyDown}
+          onBlur={handleCancelEdit}
+        /> 
+        </div>
+        
+        <button className={styles['delete-button']} onClick={() => {
+            dispatch(removeTodo(todo.id))
+          }}><img src={DeleteIcon} alt="delete" /></button>
+      </div>
     </li>
   )
 }

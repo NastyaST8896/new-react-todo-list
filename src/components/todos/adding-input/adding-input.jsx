@@ -1,8 +1,11 @@
-import InputCustom from '../input-custom/input-custom';
+import InputCustom from '../../input-custom/input-custom';
 
 import {useRef, useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {addTodo, checkAllTodo} from '../../app/todosSlice';
+import {addTodo, checkAllTodo} from '../../../app/todosSlice';
+
+import ArrowDown from '../../../img/arrow-down.svg'
+import style from './adding-input.module.scss'
 
 function AddingInput() {
   const [inputValue, setInputValue] = useState("");
@@ -19,19 +22,20 @@ function AddingInput() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && inputValue.trim() !== "") {
-      dispatch(addTodo(inputValue));
+      dispatch(addTodo(inputValue.trim()));
         setInputValue("");
     }
   }
 
-  // const handleClickArrowButton = (event) => {
-  //   dispatch(checkAllTodo());
-  // }
+  const handleClickArrowButton = (event) => {
+    dispatch(checkAllTodo());
+  }
 
   return (
-    <>
     <div>
-    </div>
+    <button className={style['arrow-down-button']} onClick={handleClickArrowButton}>
+      <img src={ArrowDown}></img>
+    </button>
 
     <InputCustom
         type='text'
@@ -42,13 +46,7 @@ function AddingInput() {
         onKeyDown={handleKeyDown}
         inputRef={inputRef}
       />
-    </>
-    // <Paper>
-    //   <IconButton onClick={handleClickArrowButton}>
-    //     <KeyboardArrowDownIcon />
-    //   </IconButton>
-      
-    // </Paper>
+    </div>
   )
 }
 
