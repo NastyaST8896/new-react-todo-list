@@ -1,6 +1,30 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = {
+export type Todo = {
+  id: number;
+  text: string;
+  checked: boolean;
+}
+
+type Todos = {
+  todos: Todo[];
+}
+
+export type AddTodoAction = {
+  type: 'ADDTODO';
+}
+
+export type removeTodoAction = {
+  type: 'REMOVETODO'
+}
+
+export type  changeTodoCheckedAction = {
+  type: 'CHANGETODOCHECKED'
+}
+
+type Action = AddTodoAction | removeTodoAction | changeTodoCheckedAction
+
+const initialState: Todos = {
   todos: [
     {id: 123, text: 'Hello', checked: false},
     {id: 124, text: 'Bye', checked: true},
@@ -62,7 +86,6 @@ export const {
   addTodo,
   removeTodo,
   changeTodoChecked,
-  findCurrentTodo,
   changeTodoText,
   checkAllTodo,
   clearAllTodo,
