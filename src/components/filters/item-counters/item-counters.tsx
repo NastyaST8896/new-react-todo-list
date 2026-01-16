@@ -1,9 +1,9 @@
-import style from './item-counters.module.scss'
+import style from './item-counters.module.scss';
 
-import { useSelector } from 'react-redux';
+import { useTypedSelectorTodos } from '../../../app/todosSlice';
 
 function ItemCounters() {
-  const todos = useSelector((state) => state.todosArray.todos);
+  const todos = useTypedSelectorTodos((state) => state.todos.todos);
 
   let checkedItemsLength = todos.filter((todo) => {
     return todo.checked === true;

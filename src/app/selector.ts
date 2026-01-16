@@ -1,7 +1,9 @@
-import {createSelector} from '@reduxjs/toolkit';
+import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from '../app/store';
 
-const allTodos = (state) => state.todosArray.todos;
-const filter = (state) => state.filters;
+
+const allTodos = (state: RootState) => state.todos.todos;
+const filter = (state: RootState) => state.filters;
 
 export const selectTodosByFilter = createSelector(
   [allTodos, filter],

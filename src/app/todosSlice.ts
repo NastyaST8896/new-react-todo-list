@@ -1,4 +1,6 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 export type Todo = {
   id: number;
@@ -6,36 +8,26 @@ export type Todo = {
   checked: boolean;
 }
 
-type Todos = {
+export type ArrayTodos = {
   todos: Todo[];
 }
 
-export type AddTodoAction = {
-  type: 'ADDTODO';
-}
+interface RootStateTodos { todos: ArrayTodos }
 
-export type removeTodoAction = {
-  type: 'REMOVETODO'
-}
+export const useTypedSelectorTodos: TypedUseSelectorHook<RootStateTodos> = useSelector;
 
-export type  changeTodoCheckedAction = {
-  type: 'CHANGETODOCHECKED'
-}
-
-type Action = AddTodoAction | removeTodoAction | changeTodoCheckedAction
-
-const initialState: Todos = {
+const initialState: ArrayTodos = {
   todos: [
-    {id: 123, text: 'Hello', checked: false},
-    {id: 124, text: 'Bye', checked: true},
+    { id: 123, text: 'Hello', checked: false },
+    { id: 124, text: 'Bye', checked: true },
   ]
 }
 
-export const todosSlice = createSlice({
+const todosSlice = createSlice({
   name: 'todosArray',
   initialState,
   reducers: {
-    addTodo: (state, action) => {
+    addTodo: (state = initialState, action: PayloadAction<string>) => {
       const newTodo = {
         id: Date.now(),
         text: action.payload,
@@ -44,11 +36,11 @@ export const todosSlice = createSlice({
       state.todos = [...state.todos, newTodo];
     },
 
-    removeTodo: (state, action) => {
+    removeTodo: (state, action: PayloadAction<number>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
 
-    changeTodoChecked: (state, action) => {
+    changeTodoChecked: (state, action: PayloadAction<number>) => {
       state.todos = state.todos.map((todo) => {
         if (todo.id === action.payload) {
           todo.checked = !todo.checked;
@@ -57,7 +49,7 @@ export const todosSlice = createSlice({
       });
     },
 
-    changeTodoText: (state, action) => {
+    changeTodoText: (state, action: PayloadAction<Todo>) => {
       state.todos = state.todos.map((todo) => {
         if (+action.payload.id === todo.id) {
           todo.text = action.payload.text;
@@ -69,7 +61,7 @@ export const todosSlice = createSlice({
 
     checkAllTodo: (state) => {
       state.todos = state.todos.map((todo) => {
-        if(!todo.checked) {
+        if (!todo.checked) {
           todo.checked = !todo.checked
         }
         return todo

@@ -4,7 +4,10 @@ import filtersReducer from './filtersSlice';
 
 export const store = configureStore({
     reducer: {
-        todosArray: todosReducer,
+        todos: todosReducer,
         filters: filtersReducer,
     }
 });
+
+export type RootState = ReturnType<typeof store.getState>
+

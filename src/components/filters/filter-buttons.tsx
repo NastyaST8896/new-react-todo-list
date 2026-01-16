@@ -1,14 +1,17 @@
-import {useDispatch, useSelector} from "react-redux";
-import {selectFilter} from "../../app/filtersSlice";
+import { useDispatch } from 'react-redux';
+import { selectFilter } from '../../app/filtersSlice';
 import { ButtonCustom } from '../button-custom/button-custom';
 
+
+import { useTypedSelectorFilters } from '../../app/filtersSlice';
+
 function FilterButtons() {
-  const currentFilter = useSelector((state) => state.filters);
+  const currentFilter = useTypedSelectorFilters((state) => state.filters)
   const dispatch = useDispatch();
 
-  const handleClick = (filter) => dispatch(selectFilter(filter));
+  const handleClick = (filter: string) => dispatch(selectFilter(filter));
 
-  const getButtonVariant = (filter) => {
+  const getButtonVariant = (filter: string) => {
     return filter === currentFilter ? 'contained' : 'outlined';
   };
 
