@@ -3,14 +3,19 @@ import styles from './list-items.module.scss';
 
 import { useDispatch } from 'react-redux';
 import { removeTodo, changeTodoChecked, changeTodoText } from '../../../app/todosSlice';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, Activity } from 'react';
 import InputCustom from '../../input-custom/input-custom';
 import CheckMark from '../../../img/check-mark.svg'
 import DeleteIcon from '../../../img/delete.svg'
 
 import { Todo } from '../../../app/todosSlice'
 
-function ListItems(todo: Todo) {
+type Props = {
+  todo: Todo
+}
+
+const ListItems: React.FC<Props> = (props) => {
+  const { todo } = props;
   const [editTodoId, setEditTodoId] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -90,15 +95,18 @@ function ListItems(todo: Todo) {
             </p>
           </div>
 
+<Activity mode={todo.id === +editTodoId ? 'visible' : 'hidden'}>
           <InputCustom
             variant='edited-input'
-            active={todo.id === +editTodoId ? true : false}
+            active
             value={inputValue}
             inputRef={inputRef}
             onChange={handleEditInputChange}
             onKeyDown={handleEditInputKeyDown}
             onBlur={handleCancelEdit}
           />
+
+</Activity>
         </div>
 
         <div className={styles['button-component']}>

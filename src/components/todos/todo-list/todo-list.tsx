@@ -8,18 +8,19 @@ import ClearButton from '../clear-button';
 import { Todo } from '../../../app/todosSlice';
 
 import styles from './todo-list.module.scss';
+import styled from 'styled-components';
 
-function TodoList() {
+const TodoList: React.FC = () => {
   const todos = useSelector(selectTodosByFilter);
 
   return (
 
-    <div>
-      <header className={styles['header']}>
+    <StyledWrapper>
+      <StyledHeader className="todo-list__header">
         <div className={styles['container']}>
           <h1>todos</h1>
         </div>
-      </header>
+      </StyledHeader>
 
 
       <main className={styles['main']}>
@@ -29,28 +30,34 @@ function TodoList() {
           </div>
 
           <ul>
-            {todos?.map((todo: Todo) => <ListItems key={todo.id} {...todo} />)}
+            {todos?.map((todo) => <ListItems key={todo.id} todo={todo} />)}
           </ul>
 
           <div className={styles['filters']}>
-            <div className={styles['filters-item']}>
-              <ItemCounters />
-            </div>
-
-            <div className={styles['filters-item']}>
-              <FilterButtons />
-            </div>
-
-            <div className={styles['filters-item']}>
-              <ClearButton />
-            </div>
-
+            <ItemCounters className={styles['filters-item']} />
+            <FilterButtons />
+            <ClearButton />
           </div>
         </div>
       </main>
 
-    </div>
+    </StyledWrapper>
   )
 }
 
+const StyledWrapper = styled.main`
+  background-color: tomato;
+
+  .todo-list__header {
+   color: blue;
+  }
+`;
+
+const StyledHeader = styled.header`
+  margin: 40px 0;
+  color: #2f7d63;
+`;
+
 export default TodoList
+
+
