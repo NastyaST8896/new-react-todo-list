@@ -1,15 +1,16 @@
 import InputCustom from '../../input-custom/input-custom';
 
 import { useRef, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTodo, checkAllTodo } from '../../../app/todosSlice';
+import { addTodo, checkAllTodo } from '../../../app/todos-slice';
+import React from "react";
 
 import ArrowDown from '../../../img/arrow-down.svg';
 import style from './adding-input.module.scss';
+import {useAppDispatch} from "../../../app/types";
 
 function AddingInput() {
   const [inputValue, setInputValue] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ function AddingInput() {
     }
   }
 
-  const handleClickArrowButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickArrowButton = () => {
     dispatch(checkAllTodo());
   }
 

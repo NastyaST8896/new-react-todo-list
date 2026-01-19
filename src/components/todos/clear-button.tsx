@@ -1,10 +1,10 @@
 import { ButtonCustom } from '../button-custom/button-custom';
 
-import { useDispatch } from 'react-redux';
-import { clearAllTodo } from '../../app/todosSlice';
+import { clearAllTodo } from '../../app/todos-slice';
+import {useAppDispatch} from "../../app/types";
 
 function ClearButton() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const handleClick = () => {
         dispatch(clearAllTodo());

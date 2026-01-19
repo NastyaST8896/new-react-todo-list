@@ -1,25 +1,19 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
-
-export type Todo = {
+export type TypeTodo = {
   id: number;
   text: string;
   checked: boolean;
 }
 
-export type ArrayTodos = {
-  todos: Todo[];
+export type TypeArrayTodos = {
+  todos: TypeTodo[];
 }
 
-interface RootStateTodos { todos: ArrayTodos }
-
-export const useTypedSelectorTodos: TypedUseSelectorHook<RootStateTodos> = useSelector;
-
-const initialState: ArrayTodos = {
+const initialState: TypeArrayTodos = {
   todos: [
-    { id: 123, text: 'Hello', checked: false },
-    { id: 124, text: 'Bye', checked: true },
+    {id: 123, text: 'Hello', checked: false},
+    {id: 124, text: 'Bye', checked: true},
   ]
 }
 
@@ -41,22 +35,18 @@ const todosSlice = createSlice({
     },
 
     changeTodoChecked: (state, action: PayloadAction<number>) => {
-      state.todos = state.todos.map((todo) => {
-        if (todo.id === action.payload) {
-          todo.checked = !todo.checked;
-        }
-        return todo;
-      });
+      const todo = state.todos.find((todo) => todo.id === action.payload);
+
+      if (todo) {
+        todo.checked = !todo.checked;
+      }
     },
 
-    changeTodoText: (state, action: PayloadAction<Todo>) => {
-      state.todos = state.todos.map((todo) => {
-        if (+action.payload.id === todo.id) {
-          todo.text = action.payload.text;
-        }
-
-        return todo;
-      });
+    changeTodoText: (state, action: PayloadAction<TypeTodo>) => {
+      const todo = state.todos.find((todo) => action.payload.id === todo.id);
+      if(todo) {
+        todo.text = action.payload.text;
+      }
     },
 
     checkAllTodo: (state) => {
@@ -69,7 +59,7 @@ const todosSlice = createSlice({
     },
 
     clearAllTodo: (state) => {
-      state.todos.splice(0, state.todos.length);
+      state.todos = [];
     }
   },
 })

@@ -2,16 +2,16 @@ import AddingInput from '../adding-input/adding-input';
 import ListItems from '../list-items/list-items';
 import ItemCounters from '../../filters/item-counters/item-counters';
 import FilterButtons from '../../filters/filter-buttons';
-import { useSelector } from 'react-redux';
 import { selectTodosByFilter } from '../../../app/selector';
 import ClearButton from '../clear-button';
-import { Todo } from '../../../app/todosSlice';
+import { TypeTodo } from '../../../app/todos-slice';
 
 import styles from './todo-list.module.scss';
 import styled from 'styled-components';
+import {useAppSelector} from "../../../app/types";
 
 const TodoList: React.FC = () => {
-  const todos = useSelector(selectTodosByFilter);
+  const todos = useAppSelector(selectTodosByFilter);
 
   return (
 

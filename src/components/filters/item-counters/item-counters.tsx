@@ -1,14 +1,13 @@
 import style from './item-counters.module.scss';
 import cn from 'classnames';
-
-import { useTypedSelectorTodos } from '../../../app/todosSlice';
+import {useAppSelector} from "../../../app/types";
 
 type Props = {
   className?:string;
 }
 
 const ItemCounters: React.FC<Props> = (props) => {
-  const todos = useTypedSelectorTodos((state) => state.todos.todos);
+  const todos = useAppSelector((state) => state.todos.todos);
 
   let checkedItemsLength = todos.filter((todo) => {
     return todo.checked === true;

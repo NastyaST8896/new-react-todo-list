@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from '../app/store';
+import { RootState } from './types';
 
 
 const allTodos = (state: RootState) => state.todos.todos;
@@ -8,17 +8,17 @@ const filter = (state: RootState) => state.filters;
 export const selectTodosByFilter = createSelector(
   [allTodos, filter],
   (allTodos, filter) => {
-    if (filter === 'all') {
+    if (filter.current === 'all') {
       return allTodos;
     }
 
-    if (filter === 'active') {
+    if (filter.current === 'active') {
       return allTodos.filter((todo) => {
         return todo.checked === false;
       })
     }
 
-    if (filter === 'completed') {
+    if (filter.current === 'completed') {
       return allTodos.filter((todo) => {
         return todo.checked === true;
       })

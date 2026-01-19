@@ -1,31 +1,31 @@
 import classNames from 'classnames';
 import styles from './list-items.module.scss';
 
-import { useDispatch } from 'react-redux';
-import { removeTodo, changeTodoChecked, changeTodoText } from '../../../app/todosSlice';
-import { useRef, useState, useEffect, Activity } from 'react';
+import {removeTodo, changeTodoChecked, changeTodoText} from '../../../app/todos-slice';
+import React, {useRef, useState, useEffect, Activity} from 'react';
 import InputCustom from '../../input-custom/input-custom';
 import CheckMark from '../../../img/check-mark.svg'
 import DeleteIcon from '../../../img/delete.svg'
 
-import { Todo } from '../../../app/todosSlice'
+import {TypeTodo} from '../../../app/todos-slice'
+import {useAppDispatch} from "../../../app/types";
 
 type Props = {
-  todo: Todo
+  todo: TypeTodo
 }
 
 const ListItems: React.FC<Props> = (props) => {
-  const { todo } = props;
+  const {todo} = props;
   const [editTodoId, setEditTodoId] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     inputRef.current?.focus();
   }, [editTodoId]);
 
-  const listItemClasses = classNames(styles['list-item'], { [styles['edited']]: todo.id === +editTodoId });
+  const listItemClasses = classNames(styles['list-item'], {[styles['edited']]: todo.id === +editTodoId});
 
   const handleEditInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -39,7 +39,7 @@ const ListItems: React.FC<Props> = (props) => {
 
   const handleEditInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      dispatch(changeTodoText({ text: inputValue, id: editTodoId, checked: todo.checked }));
+      dispatch(changeTodoText({text: inputValue, id: editTodoId, checked: todo.checked}));
       setEditTodoId(0);
       setInputValue('');
     }
@@ -63,7 +63,7 @@ const ListItems: React.FC<Props> = (props) => {
         <div className={styles['li-components-info']}>
           <div className={styles['checkbox-component']}>
             <input
-              type='checkbox'
+              type="checkbox"
               checked={todo.checked}
               className={styles['li-checkbox']}
               onChange={() => {
@@ -73,7 +73,9 @@ const ListItems: React.FC<Props> = (props) => {
 
             <div
               className={styles['checkbox-img']}
-              onClick={() => { dispatch(changeTodoChecked(todo.id)) }}
+              onClick={() => {
+                dispatch(changeTodoChecked(todo.id))
+              }}
             >
               {todo.checked ? (
                 <img
@@ -95,18 +97,18 @@ const ListItems: React.FC<Props> = (props) => {
             </p>
           </div>
 
-<Activity mode={todo.id === +editTodoId ? 'visible' : 'hidden'}>
-          <InputCustom
-            variant='edited-input'
-            active
-            value={inputValue}
-            inputRef={inputRef}
-            onChange={handleEditInputChange}
-            onKeyDown={handleEditInputKeyDown}
-            onBlur={handleCancelEdit}
-          />
+          <Activity mode={todo.id === +editTodoId ? 'visible' : 'hidden'}>
+            <InputCustom
+              variant="edited-input"
+              active
+              value={inputValue}
+              inputRef={inputRef}
+              onChange={handleEditInputChange}
+              onKeyDown={handleEditInputKeyDown}
+              onBlur={handleCancelEdit}
+            />
 
-</Activity>
+          </Activity>
         </div>
 
         <div className={styles['button-component']}>

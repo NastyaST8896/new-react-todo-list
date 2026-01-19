@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import todosReducer from './todosSlice';
-import filtersReducer from './filtersSlice';
+import todosReducer from './todos-slice';
+import filtersReducer from './filters-slice';
 
 export const store = configureStore({
     reducer: {
@@ -8,6 +8,3 @@ export const store = configureStore({
         filters: filtersReducer,
     }
 });
-
-export type RootState = ReturnType<typeof store.getState>
-
