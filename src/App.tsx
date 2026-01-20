@@ -1,9 +1,14 @@
-import TodoList from './components/todos/todo-list/todo-list';
+import React from 'react';
+import {Footer} from './components/footer/footer';
+import {Header} from './components/header/header';
+import {TodoList} from './components/todo-list/todo-list';
 
-function App() {
+export const App:React.FC = () => {
   return (
-    <TodoList />
+    <>
+     <Header />
+     <TodoList />
+     <Footer/>
+    </>
   )
 }
-
-export default App;

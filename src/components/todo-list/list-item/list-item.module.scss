@@ -4,28 +4,19 @@
     border-bottom: 1px solid #4cd5a7;
     box-shadow: 0px 6px 8px rgba(28, 82, 62, 0.3);
     padding: 8px;
-}
-
-.edited {
-
-    .li-text {
-        display: none;
-    }
-}
-
-
-
-.li-components {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 70px;
+}
 
-    &-info {
+    .li-components-info {
         display: flex;
         justify-content: flex-start;
         gap: 10px;
         align-items: center;
-        width: 80%;
+        max-width: 690px;
+        width: 90%;
 
         .checkbox-component {
             width: 24px;
@@ -41,10 +32,6 @@
                 outline: 1px solid #3ca280;
                 appearance: none;
                 cursor: pointer;
-
-                .checkbox-img {
-                    display: none;
-                }
 
                 &:checked {
                     background-color: #3ca280ab;
@@ -70,9 +57,6 @@
             }
         }
 
-        .li-text-component {
-            max-width: 100%;
-
             .li-text {
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -80,27 +64,34 @@
                 font-weight: 500;
                 font-size: 18px;
                 margin: 0 0 0 10px;
+                width:90%;
             }
+    }
+
+    .delete-button {
+        width: 36px;
+        height: 36px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        margin-left: 10px;
+
+
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        &:hover {
+            border: 1px solid #3ca280;
         }
     }
 
-    .button-component {
-        .delete-button {
-            width: 36px;
-            height: 36px;
-            border: 1px solid transparent;
-            cursor: pointer;
-            margin-left: 10px;
+@media (max-width: 768px) {
+    .li-components-info {
+        width: 80%;
+    }
 
-
-            img {
-                width: 100%;
-                object-fit: contain;
-            }
-
-            &:hover {
-                border: 1px solid #3ca280;
-            }
-        }
+    .li-text {
+            width:90%;
     }
 }

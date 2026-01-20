@@ -1,13 +1,16 @@
-import {FiltersState, selectFilter} from '../../app/filters-slice';
-import { ButtonCustom } from '../button-custom/button-custom';
-import {useAppDispatch, useAppSelector} from "../../app/types";
+import React from 'react';
+import {FiltersState, selectFilter} from '../../../app/filters-slice';
+import { ButtonCustom } from '../../button-custom/button-custom';
+import {useAppDispatch, useAppSelector} from '../../../app/types';
 
-function FilterButtons() {
+export const FilterButtons:React.FC = () => {
   const currentFilter = useAppSelector((state) => state.filters)
   const dispatch = useAppDispatch();
 
-  const handleClick = (filter: FiltersState['current']) => dispatch(selectFilter(filter));
-
+  const handleClick = (filter: FiltersState['current']) => {
+    dispatch(selectFilter(filter));
+  }
+  
   const getButtonVariant =(filter: FiltersState['current']) => {
     return filter === currentFilter.current ? 'contained' : 'outlined';
   };
@@ -32,5 +35,3 @@ function FilterButtons() {
     </div>
   );
 }
-
-export default FilterButtons
