@@ -7,7 +7,9 @@ export const App:React.FC = () => {
   return (
     <>
      <Header />
-     <TodoList />
+      <main>
+        <TodoList />
+      </main>
      <Footer/>
     </>
   )

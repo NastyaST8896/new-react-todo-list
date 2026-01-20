@@ -1,37 +1,47 @@
 import React from 'react';
 import {FiltersState, selectFilter} from '../../../app/filters-slice';
-import { ButtonCustom } from '../../button-custom/button-custom';
 import {useAppDispatch, useAppSelector} from '../../../app/types';
+import style from './filter-buttons.module.scss';
+import classNames from 'classnames';
 
-export const FilterButtons:React.FC = () => {
+export const FilterButtons: React.FC = () => {
   const currentFilter = useAppSelector((state) => state.filters)
   const dispatch = useAppDispatch();
 
   const handleClick = (filter: FiltersState['current']) => {
     dispatch(selectFilter(filter));
   }
-  
-  const getButtonVariant =(filter: FiltersState['current']) => {
-    return filter === currentFilter.current ? 'contained' : 'outlined';
+
+  const getButtonVariant = (filter: FiltersState['current']) => {
+    return classNames(
+      style['filter-button'],
+      {[style['outlined']]: filter !== currentFilter.current},
+      {[style['contained']]: filter === currentFilter.current}
+    )
   };
 
   return (
     <div>
-      <ButtonCustom
-        variant={getButtonVariant('all')}
+      <button
+        className={getButtonVariant('all')}
         onClick={() => handleClick('all')}
-        text='ALL'
-      />
-      <ButtonCustom
-        variant={getButtonVariant('active')}
+      >
+        ALL
+      </button>
+
+      <button
+        className={getButtonVariant('active')}
         onClick={() => handleClick('active')}
-        text='ACTIVE'
-      />
-      <ButtonCustom
-        variant={getButtonVariant('completed')}
+      >
+        ACTIVE
+      </button>
+
+      <button
+        className={getButtonVariant('completed')}
         onClick={() => handleClick('completed')}
-        text='COMPLETED'
-      />
+      >
+        COMPLETED
+      </button>
     </div>
   );
 }

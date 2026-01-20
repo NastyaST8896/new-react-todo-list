@@ -2,15 +2,15 @@ import React from 'react';
 import style from './edited-input.module.scss'
 
 type EditedInputProps = {
-    value: string;
-    onChange: (event:React.ChangeEvent<HTMLInputElement>) => void;
-    onKeyDown: (event:React.KeyboardEvent<HTMLInputElement>) => void;
-    inputRef: React.Ref<HTMLInputElement>;
-    onBlur: (event:React.FocusEvent<HTMLInputElement>) => void;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  inputRef: React.Ref<HTMLInputElement>;
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-export const EditedInput:React.FC<EditedInputProps> = (props) => {
-  const{
+export const EditedInput: React.FC<EditedInputProps> = (props) => {
+  const {
     value,
     onChange,
     onKeyDown,
@@ -20,12 +20,12 @@ export const EditedInput:React.FC<EditedInputProps> = (props) => {
 
   return (
     <input
-    className={style['edited-input']}
-    value={value}
-    ref={inputRef}
-    onChange={onChange}
-    onKeyDown={onKeyDown}
-    onBlur={onBlur}
+      className={style['edited-input']}
+      value={value}
+      ref={inputRef}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      onBlur={onBlur}
     />
   )
 }

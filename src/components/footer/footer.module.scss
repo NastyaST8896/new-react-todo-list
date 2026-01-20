@@ -1,11 +1,11 @@
 .footer {
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .filters {
@@ -16,8 +16,8 @@
 }
 
 @media (max-width: 768px) {
-    .footer {
-        flex-direction: column;
-        gap: 10px;
-    }
+  .footer {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './item-counters.module.scss';
-import cn from 'classnames';
 import {useAppSelector} from '../../../app/types';
 
 export const ItemCounters: React.FC = () => {
@@ -12,12 +11,12 @@ export const ItemCounters: React.FC = () => {
 
   let leftItemsLength = todos.length - checkedItemsLength
   return (
-    <div className={cn(style['item-counters'])} >
+    <div className={style['item-counters']}>
       <span>
-        {leftItemsLength} 
+        {leftItemsLength}
         {leftItemsLength === 1 ? " item" : " items"} left</span>
       <span>
-        {checkedItemsLength} 
+        {checkedItemsLength}
         {checkedItemsLength === 1 ? " item" : " items"} checked</span>
     </div>
   )

@@ -1,8 +1,8 @@
-import classNames from 'classnames';
+import cn from 'classnames';
 import styles from './list-item.module.scss';
 
 import {
-  removeTodo, 
+  removeTodo,
   changeTodoText
 } from '../../../app/todos-slice';
 
@@ -12,7 +12,7 @@ import {DeleteButton} from './delete-button/delete-button'
 
 import {TypeTodo} from '../../../app/todos-slice'
 import {useAppDispatch} from "../../../app/types";
-import { ItemCheckbox } from './item-checkbox/item-checkbox';
+import {ItemCheckbox} from './item-checkbox/item-checkbox';
 
 type ListItemProps = {
   todo: TypeTodo
@@ -32,10 +32,6 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     inputRef.current?.focus();
   }, [editTodoId]);
 
-  const listItemClasses = classNames(
-    styles['list-item'], 
-    {[styles['edited']]: editTodoId});
-
   const handleEditInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -43,7 +39,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
   }
 
   const handleDoubleClick = (
-    e:React.MouseEvent<HTMLInputElement, MouseEvent>
+    e: React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => {
     setEditTodoId(true);
     setInputValue(todo.text.trim());
@@ -54,8 +50,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
   ) => {
     if (event.key === 'Enter') {
       dispatch(changeTodoText({
-        text: inputValue, 
-        id: todo.id, 
+        text: inputValue,
+        id: todo.id,
         checked: todo.checked
       }));
       setEditTodoId(false);
@@ -74,34 +70,32 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
   }
 
   return (
-    <li className={listItemClasses}>
-        <div className={styles['li-components-info']}>
-          <ItemCheckbox todo={todo} />
+    <li className={cn(styles['list-item'], {[styles['edited']]: editTodoId})}>
+      <div className={styles['li-components-info']}>
+        <ItemCheckbox todo={todo} />
 
-          {
-            editTodoId ? (
-              <EditedInput
+        {
+          editTodoId ?
+            <EditedInput
               value={inputValue}
               inputRef={inputRef}
               onChange={handleEditInputChange}
               onKeyDown={handleEditInputKeyDown}
               onBlur={handleCancelEdit}
-              />
-            ) : (
-              
-              <p
+            />
+            :
+            <p
               className={styles['li-text']}
               onDoubleClick={handleDoubleClick}
-              >
-                {todo.text}
-              </p>
-            )
-          }
-        </div>
+            >
+              {todo.text}
+            </p>
+        }
+      </div>
 
-        <DeleteButton 
+      <DeleteButton
         onClick={() => dispatch(removeTodo(todo.id))}
-        />
+      />
     </li>
   )
 }

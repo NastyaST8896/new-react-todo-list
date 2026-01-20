@@ -9,13 +9,11 @@ export const TodoList: React.FC = () => {
   const todos = useAppSelector(selectTodosByFilter);
 
   return (
-      <main className={styles['main']}>
-        <div className={styles['container']}>
-          <ul>
+        <div className={styles.container}>
+          <ul className={styles['todo-list']}>
             {todos?.map((todo) => <ListItem key={todo.id} todo={todo} />)}
           </ul>
         </div>
-      </main>
   )
 }
 
