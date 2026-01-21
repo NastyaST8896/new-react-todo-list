@@ -5,6 +5,7 @@ export const theme = {
     color: '#2f7d63',
     border: '#4cd5a7',
     hover: '#4cd5a718'
-  } 
+  },
+};
 
-}
+export type Theme = typeof theme;

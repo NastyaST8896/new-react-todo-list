@@ -3,7 +3,6 @@ import {clearAllTodo} from '../../../app/todos-slice';
 import {useAppDispatch} from '../../../app/types';
 
 import styled from 'styled-components';
-import { theme } from '../../../color-styles';
 
 export const ClearButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -19,16 +18,16 @@ export const ClearButton: React.FC = () => {
   )
 }
 
-const StyledClearButton = styled.button`
-  border: 1px solid ${theme.colors.border};
+const StyledClearButton = styled.button` 
+  border: 1px solid ${props => props.theme.colors.border};
   border-radius: 2px;
   padding: 10px;
   font-family: "Bentham", serif;
   font-weight: 500;
   font-size: 16px;
-  color: ${theme.colors.color};
+  color: ${props => props.theme.colors.color};
 
   &:hover {
-    background-color: ${theme.colors.hover};
+    background-color: ${props => props.theme.colors.hover};
   }
 `;
