@@ -1,16 +1,31 @@
 import React from 'react';
-import {ItemCounters} from './item-counters/item-counters';
+import {ItemsCounters} from './items-counters/items-counters';
 import {FilterButtons} from './filter-buttons/filter-buttons';
 import {ClearButton} from './clear-button/clear-button';
-import style from './footer.module.scss'
+import styled from 'styled-components';
+
+const StyledFooter = styled.footer`
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+`;
 
 export const Footer:React.FC = () => {
   return (
-    <footer className={style['footer']}>
-      <ItemCounters />
+    <StyledFooter>
+      <ItemsCounters />
       <FilterButtons />
       <ClearButton />
-    </footer>
+    </StyledFooter>
   )
  
 }

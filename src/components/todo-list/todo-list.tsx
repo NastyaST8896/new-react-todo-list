@@ -2,19 +2,27 @@ import React from 'react';
 import {ListItem} from './list-item/list-item';
 import { selectTodosByFilter } from '../../app/selector';
 
-import styles from './todo-list.module.scss';
+import styled from 'styled-components';
 import {useAppSelector} from '../../app/types';
+
+const StyledMain = styled.main`
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+
+  .todo-list {
+    padding: 0 16px;
+  }
+`;
 
 export const TodoList: React.FC = () => {
   const todos = useAppSelector(selectTodosByFilter);
 
   return (
-        <main className={styles.main}>
-          <ul className={styles['todo-list']}>
+        <StyledMain>
+          <ul className='todo-list'>
             {todos?.map((todo) => <ListItem key={todo.id} todo={todo} />)}
           </ul>
-        </main>
+        </StyledMain>
   )
 }
-
-

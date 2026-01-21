@@ -1,6 +1,23 @@
 import React from 'react';
 import DeleteIcon from '../../../../img/delete.svg';
-import style from './delete-button.module.scss'
+import styled from 'styled-components';
+
+const StyledDeleteButton = styled.button`
+  width: 36px;
+  height: 36px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  margin-left: 10px;
+
+  &:hover {
+    border: 1px solid #3ca280;
+  }
+`;
+
+const StyledDeleteButtonImg = styled.img`
+  width: 100%;
+  object-fit: contain;
+`;
 
 type DeleteButtonProp = {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -9,14 +26,12 @@ type DeleteButtonProp = {
 export const DeleteButton: React.FC<DeleteButtonProp> = (prop) => {
   const {onClick} = prop;
   return (
-    <button
-      className={style['delete-button']}
+    <StyledDeleteButton
       onClick={onClick}
     >
-      <img
-        className={style['delete-button-img']}
+      <StyledDeleteButtonImg
         src={DeleteIcon}
         alt="trash can" />
-    </button>
+    </StyledDeleteButton>
   )
 }

@@ -2,8 +2,30 @@ import React from 'react';
 import {TypeTodo} from '../../../../app/todos-slice';
 import {changeTodoChecked} from '../../../../app/todos-slice';
 import CheckMark from '../../../../img/check-mark.svg';
-import styles from './todo-checkbox.module.scss';
 import {useAppDispatch} from '../../../../app/types';
+import styled from 'styled-components';
+
+const StyledTodoCheckbox = styled.input`
+  width: 22px;
+  height: 22px;
+  box-shadow: inset 0 0 5px hsla(160, 46%, 30%, 0.3);
+  outline: 1px solid #3ca280;
+  appearance: none;
+  cursor: pointer;
+`;
+
+const StyledTodoCheckboxChecked = styled.div`
+  width: 24px;
+  height: 24px;
+  border: 1px solid #3ca280;
+  cursor: pointer;
+  margin: 2px 2px 2px 3px;
+
+  .check-mark {
+    width: 22px;
+    height: 22px;
+  }
+`;
 
 type ItemCheckboxProp = {
   todo: TypeTodo
@@ -17,23 +39,21 @@ export const TodoCheckbox: React.FC<ItemCheckboxProp> = (prop) => {
   return (
     <>
       {todo.checked ?
-        <div
-        className={styles['todo-checkbox--checked']}
+        <StyledTodoCheckboxChecked
         onClick={() => {
           dispatch(changeTodoChecked(todo.id))
         }}
         >
           <img
-            className={styles['check-mark']}
+            className='check-mark'
             src={CheckMark}
             alt="check mark"
           />
-        </div>
+        </StyledTodoCheckboxChecked>
       :
-        <input
+        <StyledTodoCheckbox
         type="checkbox"
         checked={todo.checked}
-        className={styles['todo-checkbox']}
         onChange={() => {
           dispatch(changeTodoChecked(todo.id))
         }}
