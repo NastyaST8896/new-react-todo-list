@@ -2,7 +2,7 @@ import React from 'react';
 import {FiltersState, selectFilter} from '../../../app/filters-slice';
 import {useAppDispatch, useAppSelector} from '../../../app/types';
 import style from './filter-buttons.module.scss';
-import classNames from 'classnames';
+import cn from 'classnames';
 
 export const FilterButtons: React.FC = () => {
   const currentFilter = useAppSelector((state) => state.filters)
@@ -13,7 +13,7 @@ export const FilterButtons: React.FC = () => {
   }
 
   const getButtonVariant = (filter: FiltersState['current']) => {
-    return classNames(
+    return cn(
       style['filter-button'],
       {[style['outlined']]: filter !== currentFilter.current},
       {[style['contained']]: filter === currentFilter.current}

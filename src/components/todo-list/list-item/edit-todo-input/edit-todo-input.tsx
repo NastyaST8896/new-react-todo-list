@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './edited-input.module.scss'
+import style from './edit-todo-input.module.scss'
 
 type EditedInputProps = {
   value: string;
@@ -9,7 +9,7 @@ type EditedInputProps = {
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-export const EditedInput: React.FC<EditedInputProps> = (props) => {
+export const EditTodoInput: React.FC<EditedInputProps> = (props) => {
   const {
     value,
     onChange,
@@ -20,7 +20,7 @@ export const EditedInput: React.FC<EditedInputProps> = (props) => {
 
   return (
     <input
-      className={style['edited-input']}
+      className={style['edit-todo-input']}
       value={value}
       ref={inputRef}
       onChange={onChange}

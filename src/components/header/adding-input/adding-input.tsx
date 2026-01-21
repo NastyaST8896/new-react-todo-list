@@ -39,7 +39,7 @@ export const AddingInput: React.FC = () => {
       </button>
 
       <input
-        className={styles['adding-input']}
+        className={styles['add-todo-input']}
         placeholder="add a new todo"
         value={inputValue}
         onChange={handleInputChange}

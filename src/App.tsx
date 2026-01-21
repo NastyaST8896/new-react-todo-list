@@ -6,11 +6,9 @@ import {TodoList} from './components/todo-list/todo-list';
 export const App:React.FC = () => {
   return (
     <>
-     <Header />
-      <main>
-        <TodoList />
-      </main>
-     <Footer/>
+      <Header />
+      <TodoList />
+      <Footer/>
     </>
   )
 }

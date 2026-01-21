@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import styles from './list-item.module.scss';
 
 import {
@@ -7,12 +6,12 @@ import {
 } from '../../../app/todos-slice';
 
 import React, {useRef, useState, useEffect} from 'react';
-import {EditedInput} from './edited-input/edited-input';
+import {EditTodoInput} from './edit-todo-input/edit-todo-input';
 import {DeleteButton} from './delete-button/delete-button'
 
 import {TypeTodo} from '../../../app/todos-slice'
 import {useAppDispatch} from "../../../app/types";
-import {ItemCheckbox} from './item-checkbox/item-checkbox';
+import {TodoCheckbox} from './todo-checkbox/todo-checkbox';
 
 type ListItemProps = {
   todo: TypeTodo
@@ -70,13 +69,13 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
   }
 
   return (
-    <li className={cn(styles['list-item'], {[styles['edited']]: editTodoId})}>
-      <div className={styles['li-components-info']}>
-        <ItemCheckbox todo={todo} />
+    <li className={styles['list-item']}>
+      <div className={styles['list-item-info']}>
+        <TodoCheckbox todo={todo} />
 
         {
           editTodoId ?
-            <EditedInput
+            <EditTodoInput
               value={inputValue}
               inputRef={inputRef}
               onChange={handleEditInputChange}
@@ -85,7 +84,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             />
             :
             <p
-              className={styles['li-text']}
+              className={styles['item-info-text']}
               onDoubleClick={handleDoubleClick}
             >
               {todo.text}
