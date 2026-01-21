@@ -3,20 +3,7 @@ import {clearAllTodo} from '../../../app/todos-slice';
 import {useAppDispatch} from '../../../app/types';
 
 import styled from 'styled-components';
-
-const StyledClearButton = styled.button`
-  border: 1px solid #4cd5a7;
-  border-radius: 2px;
-  padding: 10px;
-  font-family: "Bentham", serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: #2f7d63;
-
-  &:hover {
-    background-color: #4cd5a718;
-  }
-`;
+import { theme } from '../../../color-styles';
 
 export const ClearButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -31,3 +18,17 @@ export const ClearButton: React.FC = () => {
     </StyledClearButton>
   )
 }
+
+const StyledClearButton = styled.button`
+  border: 1px solid ${theme.colors.border};
+  border-radius: 2px;
+  padding: 10px;
+  font-family: "Bentham", serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: ${theme.colors.color};
+
+  &:hover {
+    background-color: ${theme.colors.hover};
+  }
+`;

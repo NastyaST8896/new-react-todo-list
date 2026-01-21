@@ -2,6 +2,18 @@ import React from 'react';
 import {AddingInput} from './adding-input/adding-input';
 import styled from 'styled-components';
 
+export const Header: React.FC = () => {
+  return (
+    <StyledHeader>
+      <StyledContainer>
+        <h1>todos</h1>
+      </StyledContainer>
+
+      <AddingInput />
+    </StyledHeader>
+  )
+}
+
 const StyledHeader = styled.header`
     color: #2f7d63;
     max-width: 800px;
@@ -15,15 +27,3 @@ const StyledContainer = styled.div`
     width: 100%;
     margin: 0 auto;
 `;
-
-export const Header: React.FC = () => {
-  return (
-    <StyledHeader>
-      <StyledContainer>
-        <h1>todos</h1>
-      </StyledContainer>
-
-      <AddingInput />
-    </StyledHeader>
-  )
-}

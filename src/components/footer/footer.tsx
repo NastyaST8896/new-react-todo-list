@@ -4,6 +4,17 @@ import {FilterButtons} from './filter-buttons/filter-buttons';
 import {ClearButton} from './clear-button/clear-button';
 import styled from 'styled-components';
 
+export const Footer:React.FC = () => {
+  return (
+    <StyledFooter>
+      <ItemsCounters />
+      <FilterButtons />
+      <ClearButton />
+    </StyledFooter>
+  )
+ 
+}
+
 const StyledFooter = styled.footer`
   max-width: 800px;
   width: 100%;
@@ -18,14 +29,3 @@ const StyledFooter = styled.footer`
     gap: 10px;
   }
 `;
-
-export const Footer:React.FC = () => {
-  return (
-    <StyledFooter>
-      <ItemsCounters />
-      <FilterButtons />
-      <ClearButton />
-    </StyledFooter>
-  )
- 
-}

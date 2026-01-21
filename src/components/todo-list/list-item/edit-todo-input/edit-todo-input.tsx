@@ -1,22 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledEditTodoInput = styled.input`
-  width: 100%;
-  padding: 10px;
-  font-family: "Bentham", serif;
-  font-weight: 300;
-  font-size: 18px;
-  border: none;
-  border-radius: 2px;
-  outline: rgba(77, 214, 168, 0.1) solid 1px;
-  background-color: transparent;
-  box-shadow: inset -2px -2px 8px rgba(77, 214, 168, 0.1),
-  inset -2px -2px 12px rgba(77, 214, 168, 0.1),
-  inset 2px 2px 4px rgba(77, 214, 168, 0.1),
-  inset 2px 2px 8px rgba(28, 82, 62, 0.3);
-`;
-
 type EditTodoInputProps = {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -44,3 +28,19 @@ export const EditTodoInput: React.FC<EditTodoInputProps> = (props) => {
     />
   )
 }
+
+const StyledEditTodoInput = styled.input`
+  width: 100%;
+  padding: 10px;
+  font-family: "Bentham", serif;
+  font-weight: 300;
+  font-size: 18px;
+  border: none;
+  border-radius: 2px;
+  outline: rgba(77, 214, 168, 0.1) solid 1px;
+  background-color: transparent;
+  box-shadow: inset -2px -2px 8px rgba(77, 214, 168, 0.1),
+  inset -2px -2px 12px rgba(77, 214, 168, 0.1),
+  inset 2px 2px 4px rgba(77, 214, 168, 0.1),
+  inset 2px 2px 8px rgba(28, 82, 62, 0.3);
+`;

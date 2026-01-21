@@ -13,45 +13,6 @@ import {TypeTodo} from '../../../app/todos-slice'
 import {useAppDispatch} from "../../../app/types";
 import {TodoCheckbox} from './todo-checkbox/todo-checkbox';
 
-const StyledListItem = styled.li`
-  user-select: none;
-  list-style-type: none;
-  border-bottom: 1px solid #4cd5a7;
-  box-shadow: 0px 6px 8px rgba(28, 82, 62, 0.3);
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-`;
-
-const StyledListItemInfo = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
-  align-items: center;
-  max-width: 690px;
-  width: 90%;
-
-  .item-info-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: "Bentham", serif;
-    font-weight: 500;
-    font-size: 18px;
-    margin: 0 0 0 10px;
-    width: 90%;
-  }
-
-  @media (max-width: 768px) {
-    width: 80%;
-
-    .item-info-text {
-      width: 90%;
-    }
-  }
-`;
-
 type ListItemProps = {
   todo: TypeTodo
 }
@@ -137,3 +98,42 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     </StyledListItem>
   )
 }
+
+const StyledListItem = styled.li`
+  user-select: none;
+  list-style-type: none;
+  border-bottom: 1px solid #4cd5a7;
+  box-shadow: 0px 6px 8px rgba(28, 82, 62, 0.3);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+`;
+
+const StyledListItemInfo = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  max-width: 690px;
+  width: 90%;
+
+  .item-info-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Bentham", serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0 0 0 10px;
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    width: 80%;
+
+    .item-info-text {
+      width: 90%;
+    }
+  }
+`;
