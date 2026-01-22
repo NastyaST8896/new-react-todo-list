@@ -46,17 +46,19 @@ export const FilterButtons: React.FC = () => {
 }
 
 const StyledFilterButton = styled.button<{$primary: boolean;}>`
-  border: 1px solid #4cd5a7;
+  border: 1px solid ${props => props.theme.colors.LightLimeGreen};
   border-radius: 2px;
   padding: 10px;
   font-family: "Bentham", serif;
   font-weight: 500;
   font-size: 16px;
-  color: #2f7d63;
-  background-color: ${(props) => props.$primary ? '#3ca280' :'#f5f5dc'};
+  color: ${props => props.theme.colors.darkLimeGreen};
+  background-color: ${(props) => props.$primary ? 
+  props.theme.colors.limeGreen :
+  props.theme.colors.beige};
 
   &:hover {
-    background-color: #4cd5a718;
+    background-color: ${props => props.theme.colors.transparentLimeGreen};
   }
   
   @media (max-width: 768px) {

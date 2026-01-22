@@ -27,7 +27,7 @@ const StyledDeleteButton = styled.button`
   margin-left: 10px;
 
   &:hover {
-    border: 1px solid #3ca280;
+    border: 1px solid ${props => props.theme.colors.limeGreen};
   }
 `;
 

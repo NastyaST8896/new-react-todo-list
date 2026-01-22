@@ -102,8 +102,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
 const StyledListItem = styled.li`
   user-select: none;
   list-style-type: none;
-  border-bottom: 1px solid #4cd5a7;
-  box-shadow: 0px 6px 8px rgba(28, 82, 62, 0.3);
+  border-bottom: 1px solid ${props => props.theme.colors.LightLimeGreen};
+  box-shadow: 0px 6px 8px ${props => props.theme.colors.lTransparentMermaidKiss};
   padding: 8px;
   display: flex;
   align-items: center;

@@ -34,5 +34,5 @@ const StyledItemsCounters = styled.div`
 `;
 
 const StyledCounter = styled.span`
-  color: #2f7d63;
+  color: ${props => props.theme.colors.darkLimeGreen};
 `;

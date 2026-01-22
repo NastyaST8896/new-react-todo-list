@@ -50,11 +50,8 @@ const todosSlice = createSlice({
     },
 
     checkAllTodo: (state) => {
-      state.todos = state.todos.map((todo) => {
-        if (!todo.checked) {
-          todo.checked = !todo.checked
-        }
-        return todo
+      state.todos.forEach((todo) => {
+        todo.checked = true;
       })
     },
 

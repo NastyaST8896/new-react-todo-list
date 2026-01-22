@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
 }
 
 const StyledHeader = styled.header`
-    color: #2f7d63;
+    color: ${props => props.theme.colors.darkLimeGreen};
     max-width: 800px;
     width: 100%;
     margin: 0 auto;

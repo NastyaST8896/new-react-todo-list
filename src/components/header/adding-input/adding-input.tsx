@@ -51,16 +51,16 @@ export const AddingInput: React.FC = () => {
 
 const StyledArrowDownButton = styled.button`
   position: absolute;
-  border: 1px solid #4dd6a81a;
+  border: 1px solid ${props => props.theme.colors.mTransparentMermaidKiss};
   border-radius: 2px;
   padding: 8px;
   font-family: "Bentham", serif;
   font-weight: 500;
   font-size: 16px;
-  color: #2f7d63;
+  color: ${props => props.theme.colors.mTransparentMermaidKiss};
   line-height: 0;
-  box-shadow: 2px 2px 4px rgba(77, 214, 168, 0.1),
-  2px 2px 8px rgba(28, 82, 62, 0.3);
+  box-shadow: 2px 2px 4px ${props => props.theme.colors.hTransparentMermaidKiss},
+  2px 2px 8px ${props => props.theme.colors.lTransparentMermaidKiss};
   transition: all 0.3s ease;
 
   &:hover {
@@ -76,8 +76,8 @@ const StyledAddTodoInput = styled.input`
   font-size: 18px;
   border: none;
   border-radius: 2px;
-  outline: rgba(77, 214, 168, 0.1) solid 1px;
+  outline:  ${props => props.theme.colors.hTransparentMermaidKiss} solid 1px;
   background-color: transparent;
-  box-shadow: 2px 2px 4px rgba(77, 214, 168, 0.1),
-  2px 2px 8px rgba(28, 82, 62, 0.3);
+  box-shadow: 2px 2px 4px ${props => props.theme.colors.hTransparentMermaidKiss},
+  2px 2px 8px ${props => props.theme.colors.lTransparentMermaidKiss};
 `;

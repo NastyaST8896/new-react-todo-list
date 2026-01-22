@@ -37,10 +37,12 @@ const StyledEditTodoInput = styled.input`
   font-size: 18px;
   border: none;
   border-radius: 2px;
-  outline: rgba(77, 214, 168, 0.1) solid 1px;
+  outline: ${props => props.theme.colors.hTransparentMermaidKiss} solid 1px;
   background-color: transparent;
-  box-shadow: inset -2px -2px 8px rgba(77, 214, 168, 0.1),
-  inset -2px -2px 12px rgba(77, 214, 168, 0.1),
-  inset 2px 2px 4px rgba(77, 214, 168, 0.1),
-  inset 2px 2px 8px rgba(28, 82, 62, 0.3);
+  box-shadow: inset -2px -2px 8px ${
+  props => props.theme.colors.hTransparentMermaidKiss
+  },
+  inset -2px -2px 12px ${props => props.theme.colors.hTransparentMermaidKiss},
+  inset 2px 2px 4px ${props => props.theme.colors.hTransparentMermaidKiss},
+  inset 2px 2px 8px ${props => props.theme.colors.lTransparentMermaidKiss};
 `;
